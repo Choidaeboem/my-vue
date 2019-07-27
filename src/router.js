@@ -24,6 +24,22 @@ export default new Router({
       component: () => import('./views/About2.vue')
     },
     {
+      path: '/lectures/card',
+      name: 'lecturs_card',
+      component: () => import('./views/lectures/card.vue')
+    },
+    {
+      path: '/lectures/layout',
+      name: 'lecturs_layout',
+      component: () => import('./views/lectures/layout.vue')
+    },
+    {
+      path: '/lectures/notes',
+      name: 'lecturs_notes',
+      component: () => import('./views/lectures/notes.vue')
+    },
+
+    {
       path: '*',
       name: '404',
       component: () => import('./views/e404.vue')
