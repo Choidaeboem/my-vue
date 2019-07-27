@@ -40,8 +40,14 @@
               <v-card-text>
                   {{item.content}}
               </v-card-text>
+              <v-card-text>
+                  {{item.id}}
+              </v-card-text>
               <v-card-actions>
-                  <v-btn @click="put(item)" depressed color="#f74741" dark>수정</v-btn>
+                  <v-spacer></v-spacer>
+
+                  <v-btn @click="del(item.id)" depressed >삭제</v-btn>
+                  <v-btn @click="put(item.id)" depressed color="#f74741" dark>수정</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -58,27 +64,44 @@ export default {
     itemsPerPage: 4,
     items: [],
     title: '',
-    content: ''
+    content: '',
+    id: ''
   }),
   mounted () {
+    this.get()
   },
   methods: {
-    post () {
-      this.items.push({
+    async post () {
+      const r = await this.$firebase.firestore().collection('notes').add({
         title: this.title,
         content: this.content
       })
+      console.log(r)
       this.title = ''
       this.content = ''
     },
-    get () {
-
+    async get () {
+      const snapshot = await this.$firebase.firestore().collection('notes').get()
+      this.items = []
+      snapshot.forEach(v => {
+        console.log(v.id)
+        const { title, content } = v.data()
+        this.items.push({ title, content, id: v.id })
+      })
     },
-    put () {
+    async put (id) {
+      const r = await this.$firebase.firestore().collection('notes').doc(id).set({
+        title: this.title,
+        content: this.content
+      })
 
+      await this.get()
+      console.log(r)
     },
-    del () {
+    async del (id) {
+      const r = await this.$firebase.firestore().collection('notes').doc(id).delete()
 
+      this.get()
     }
   }
 }
