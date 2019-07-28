@@ -40,7 +40,7 @@
       <v-toolbar-title>{{ $store.state.token }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text>
+        <v-btn text @click="signOut">
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -100,8 +100,8 @@ export default {
     ]
   }),
   methods: {
-    test () {
-
+    async signOut () {
+      await this.$firebase.auth().signOut()
     }
   }
 }

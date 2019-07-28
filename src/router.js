@@ -4,14 +4,18 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      beforeEnter: (to, from, next) => {
+        console.log(to)
+      }
+
     },
     {
       path: '/sign',
@@ -58,7 +62,6 @@ export default new Router({
       name: 'lecturs_vuex',
       component: () => import('./views/lectures/vuex.vue')
     },
-
     {
       path: '*',
       name: '404',
@@ -66,3 +69,15 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log('bf each')
+  if (Vue.prototype.$isFireBaseAuth) next()
+})
+
+router.afterEach((to, from, next) => {
+  console.log('af each')
+  next()
+})
+
+export default router
