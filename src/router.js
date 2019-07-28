@@ -48,6 +48,16 @@ export default new Router({
       name: 'lecturs_axios',
       component: () => import('./views/lectures/axios.vue')
     },
+    {
+      path: '/lectures/mother',
+      name: 'lecturs_mother',
+      component: () => import('./views/lectures/mother.vue')
+    },
+    {
+      path: '/lectures/vuex',
+      name: 'lecturs_vuex',
+      component: () => import('./views/lectures/vuex.vue')
+    },
 
     {
       path: '*',

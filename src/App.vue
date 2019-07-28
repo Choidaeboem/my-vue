@@ -36,7 +36,7 @@
     <v-app-bar app flat>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-toolbar-title>다이붐의 블로그</v-toolbar-title>
+      <v-toolbar-title>{{ $store.state.title }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text>
