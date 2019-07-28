@@ -81,6 +81,7 @@ export default {
         content: this.content
       })
       console.log(r)
+      await this.get()
       this.title = ''
       this.content = ''
     },
@@ -105,7 +106,7 @@ export default {
     async del (id) {
       const r = await this.$firebase.firestore().collection('notes').doc(id).delete()
       console.log(r)
-      this.get()
+      await this.get()
     }
   }
 }

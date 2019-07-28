@@ -97,28 +97,28 @@ export default {
   },
   methods: {
     async create () {
-      const r = await this.$axios.post('http://localhost:5000/daiboom-my-vue/us-central1/test')
+      const r = await this.$axios.post('test')
 
       this.textCreate = r.data
       //   this.$toasted.show('hello billo')
       this.$toasted.global.error('잘못했어요')
     },
     read () {
-      this.$axios.get('http://localhost:5000/daiboom-my-vue/us-central1/test')
+      this.$axios.get('test')
         .then(r => {
           this.textRead = r.data
         })
         .catch(e => console.log(e))
     },
     update (id) {
-      this.$axios.put('http://localhost:5000/daiboom-my-vue/us-central1/test/11111')
+      this.$axios.put('test/11111')
         .then(r => {
           this.textUpdate = r.data
         })
         .catch(e => console.log(e))
     },
     del (id) {
-      this.$axios.delete('http://localhost:5000/daiboom-my-vue/us-central1/test/22222')
+      this.$axios.delete('test/22222')
         .then(r => {
           this.textDelete = r.data
         })
