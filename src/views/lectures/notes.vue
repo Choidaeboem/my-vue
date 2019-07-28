@@ -68,7 +68,11 @@ export default {
     id: ''
   }),
   mounted () {
-    this.get()
+    try {
+      this.get()
+    } catch (e) {
+      console.log(e)
+    }
   },
   methods: {
     async post () {
@@ -100,7 +104,7 @@ export default {
     },
     async del (id) {
       const r = await this.$firebase.firestore().collection('notes').doc(id).delete()
-
+      console.log(r)
       this.get()
     }
   }
