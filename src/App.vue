@@ -74,6 +74,10 @@ export default {
           {
             title: 'About2',
             to: '/about2'
+          },
+          {
+            title: 'Notes',
+            to: '/Lectures/notes'
           }
         ]
       },

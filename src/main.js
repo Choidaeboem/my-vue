@@ -3,7 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import firebase from './plugins/firebase'
+import './plugins/firebase'
+import './plugins/axios'
+import './plugins/vue-toasted'
+import './error'
 
 Vue.config.productionTip = false
 
@@ -11,6 +14,5 @@ new Vue({
   router,
   store,
   vuetify,
-  firebase,
   render: h => h(App)
 }).$mount('#app')

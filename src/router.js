@@ -43,6 +43,11 @@ export default new Router({
       name: 'lecturs_notes',
       component: () => import('./views/lectures/notes.vue')
     },
+    {
+      path: '/lectures/axios',
+      name: 'lecturs_axios',
+      component: () => import('./views/lectures/axios.vue')
+    },
 
     {
       path: '*',
