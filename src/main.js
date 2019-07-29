@@ -3,10 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import './plugins/firebase'
-import './plugins/axios'
-import './plugins/vue-toasted'
-import './error'
+import './plugins'
 
 Vue.config.productionTip = false
 
