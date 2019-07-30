@@ -70,12 +70,12 @@ export default {
 </script>
 
 <style>
-.v-content {
+/* .v-content {
   background:url('https://picsum.photos/1024/768') no-repeat center;
   background-size:cover;
 }
 
 .auth-box{
   background-color: #fff;
-}
+} */
 </style>

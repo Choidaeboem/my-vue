@@ -36,7 +36,7 @@
     <v-app-bar app flat>
       <v-app-bar-nav-icon @click="drawer = !drawer" v-if="$store.state.user"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-toolbar-title>미정 0.0.1</v-toolbar-title>
+      <v-toolbar-title>안녕!</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$store.state.user" >
           <v-menu offset-y>
@@ -85,7 +85,7 @@
     <v-content>
       <v-container grid-list-md>
         <v-layout row wrap align-center justify-center>
-          <v-card color="transparent" flat v-if="!$isFireBaseAuth">
+          <v-card color="transparent" flat v-if="!$isFirebaseAuth">
             <v-card-text class="text-center">
               <v-progress-circular
                 color="primary"

@@ -5,9 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    title: '다이붐',
+    title: '원래 제목',
     user: null,
-    token: ''
+    token: '',
+    claims: null
   },
   mutations: {
     setTitle (state, p) {
@@ -18,15 +19,24 @@ export default new Vuex.Store({
     },
     setToken (state, token) {
       state.token = token
+    },
+    setClaims (state, claims) {
+      state.claims = claims
     }
   },
   actions: {
     getUser ({ commit }, user) {
       commit('setUser', user)
       if (!user) return
-      user.getIdToken()
+      return user.getIdToken()
         .then(token => {
           commit('setToken', token)
+          console.log(token)
+          return user.getIdTokenResult()
+        })
+        .then(r => {
+          console.log(r)
+          commit('setClaims', r.claims)
         })
     }
   }

@@ -14,6 +14,7 @@ const router = new Router({
       component: Home,
       beforeEnter: (to, from, next) => {
         console.log(to)
+        next()
       }
 
     },
@@ -72,7 +73,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   Vue.prototype.$Progress.start()
-  if (Vue.prototype.$isFireBaseAuth) next()
+  if (Vue.prototype.$isFirebaseAuth) next()
 })
 
 router.afterEach((to, from) => {
