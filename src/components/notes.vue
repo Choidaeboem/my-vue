@@ -51,11 +51,10 @@
                   {{item.id}}
               </v-card-text>
               <v-card-actions>
-                  <router-link to='n/cp1uV05LLETA3BAZDJIC'>
-                    <v-btn @click="del(item.id)" depressed >go Note</v-btn>
+                  <router-link :to="`n/${item.id}/m/1`">
+                    <v-btn depressed >go Note</v-btn>
                   </router-link>
                   <v-spacer></v-spacer>
-
                   <v-btn @click="del(item.id)" depressed >삭제</v-btn>
                   <v-btn @click="put(item.id)" depressed color="#f74741" dark>수정</v-btn>
               </v-card-actions>

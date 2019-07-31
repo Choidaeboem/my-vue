@@ -35,7 +35,14 @@ const router = new Router({
     {
       path: '/n/:nid',
       name: 'note',
-      component: () => import('./components/note.vue')
+      component: () => import('./components/note.vue'),
+      children: [
+        {
+          path: 'm/:mid',
+          name: 'memo',
+          component: () => import('./components/memo.vue')
+        }
+      ]
     },
     {
       path: '/notes',

@@ -2,8 +2,12 @@
     <div>
         note
         <div>
-            {{this.nid}}
+            {{nid}}
         </div>
+        <router-link :to="`/n/${nid}/m/1`">memo1</router-link>
+        <router-link :to="`/n/${nid}/m/2`">memo2</router-link>
+        <hr>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -15,10 +19,12 @@ export default {
     }
   },
   methods: {
-
+    fetchData () {
+      this.nid = this.$route.params.nid
+    }
   },
   created () {
-    this.nid = this.$route.params.nid
+    this.fetchData()
   }
 }
 </script>
