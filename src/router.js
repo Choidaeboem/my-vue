@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
-import Home from './views/Home.vue'
+import Home from './components/Home.vue'
 
 Vue.use(Router)
 
@@ -25,57 +25,47 @@ const router = new Router({
     {
       path: '/sign',
       name: 'sign',
-      component: () => import('./views/sign.vue')
+      component: () => import('./components/sign.vue')
     },
     {
       path: '/userProfile',
       name: 'userProfile',
-      component: () => import('./views/userProfile.vue')
+      component: () => import('./components/userProfile.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
-    },
-    {
-      path: '/about2',
-      name: 'about2',
-      component: () => import('./views/About2.vue')
-    },
-    {
-      path: '/lectures/card',
-      name: 'lecturs_card',
-      component: () => import('./views/lectures/card.vue')
-    },
-    {
-      path: '/lectures/layout',
-      name: 'lecturs_layout',
-      component: () => import('./views/lectures/layout.vue')
-    },
-    {
-      path: '/lectures/notes',
+      path: '/notes',
       name: 'lecturs_notes',
-      component: () => import('./views/lectures/notes.vue')
+      component: () => import('./components/notes.vue')
     },
     {
-      path: '/lectures/axios',
+      path: '/test/card',
+      name: 'lecturs_card',
+      component: () => import('./components/test/card.vue')
+    },
+    {
+      path: '/test/layout',
+      name: 'lecturs_layout',
+      component: () => import('./components/test/layout.vue')
+    },
+    {
+      path: '/test/axios',
       name: 'lecturs_axios',
-      component: () => import('./views/lectures/axios.vue')
+      component: () => import('./components/test/axios.vue')
     },
     {
-      path: '/lectures/mother',
-      name: 'lecturs_mother',
-      component: () => import('./views/lectures/mother.vue')
+      path: '/test/vuex',
+      name: 'test_vuex',
+      component: () => import('./components/test/vuex.vue')
     },
     {
-      path: '/lectures/vuex',
-      name: 'lecturs_vuex',
-      component: () => import('./views/lectures/vuex.vue')
+      path: '/test/threejs',
+      name: 'test_vuex',
+      component: () => import('./components/test/threejs.vue')
     },
     {
       path: '*',
       name: '404',
-      component: () => import('./views/e404.vue')
+      component: () => import('./components/e404.vue')
     }
   ]
 })

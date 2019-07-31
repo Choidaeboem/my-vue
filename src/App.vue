@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-app-bar flat color="transparent">
-       <v-toolbar-title>회원님 안녕하세요</v-toolbar-title>
+       <v-toolbar-title>{{$store.state.user.displayName}}</v-toolbar-title>
       </v-app-bar>
       <v-divider></v-divider>
       <v-list>
@@ -97,7 +97,6 @@
             </v-card-text>
           </v-card>
         </v-layout>
-
       </v-container>
       <vue-progress-bar></vue-progress-bar>
       <router-view/>
@@ -117,36 +116,32 @@ export default {
     drawer: false,
     items: [
       {
-        icon: 'mdi-alert',
-        title: 'DashBoard',
+        icon: 'mdi-pencil',
+        title: 'Blog',
         active: true,
         subItems: [
           {
-            title: 'DashBoard',
-            to: '/'
-          },
-          {
-            title: 'About2',
-            to: '/about2'
-          },
-          {
-            title: 'Notes',
-            to: '/Lectures/notes'
+            title: 'NOTES',
+            to: '/notes'
           }
         ]
       },
       {
-        icon: 'mdi-alert-box',
-        title: 'Lectures',
+        icon: 'mdi-code-tags',
+        title: 'Test',
         active: false,
         subItems: [
           {
             title: 'card',
-            to: '/lectures/card'
+            to: '/test/card'
           },
           {
             title: 'layout',
-            to: '/lectures/layout'
+            to: '/test/layout'
+          },
+          {
+            title: 'three.js',
+            to: '/test/threejs'
           }
         ]
       }

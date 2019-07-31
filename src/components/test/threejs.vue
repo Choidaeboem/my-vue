@@ -1,6 +1,6 @@
 <template>
 <div>
-    딸1
+    three.js 테스트
 </div>
 </template>
 
