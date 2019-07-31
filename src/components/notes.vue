@@ -1,23 +1,30 @@
 <template>
     <v-container fluid grid-list-md>
         <v-layout row wrap>
-            <v-flex xs5>
+          <v-flex xs12>
+            <v-card :outlined="true">
+              <v-card-text>
                 <v-text-field
                     v-model="title"
-                    label="title"
+                    label="일정요약"
                     id="id"
-                ></v-text-field>
-            </v-flex>
-            <v-flex xs5>
-                <v-text-field
+                    :flat="true"
+                    :solo="true"
+              ></v-text-field>
+              <v-textarea
                     v-model="content"
-                    label="content"
+                    label="일정정리"
                     id="id"
-                ></v-text-field>
-            </v-flex>
-            <v-flex xs2>
-                <v-btn @click="post">post</v-btn>
-            </v-flex>
+                    :flat="true"
+                    :solo="true"
+              ></v-textarea>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn @click="post" depressed color="#f74741" dark>포스팅</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
         </v-layout>
     <v-data-iterator
       :items="items"
@@ -34,7 +41,7 @@
             md4
             lg3
           >
-            <v-card>
+            <v-card :outlined="true">
               <v-card-title><h4>{{ item.title }}</h4></v-card-title>
               <v-divider></v-divider>
               <v-card-text>
@@ -76,6 +83,10 @@ export default {
   },
   methods: {
     async post () {
+      if (this.title.length <= 2) {
+        alert('두글자 이상')
+        return
+      }
       const r = await this.$firebase.firestore().collection('notes').add({
         title: this.title,
         content: this.content

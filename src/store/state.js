@@ -6,4 +6,6 @@ const state = {
   firebaseLoaded: false
 }
 
+console.log(state.user)
+
 export default state

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import SignIn from '@/components/auth/signIn'
-import SignUp from '@/components/auth/signUp'
+import SignIn from './auth/signIn'
+import SignUp from './auth/signUp'
 export default {
   components: {
     SignIn,

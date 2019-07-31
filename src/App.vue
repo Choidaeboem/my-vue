@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-app-bar flat color="transparent">
-       <v-toolbar-title>{{$store.state.user.displayName}}</v-toolbar-title>
+       <v-toolbar-title>{{$store.state.user ? $store.state.user.displayName : '안녕하세요'}}</v-toolbar-title>
       </v-app-bar>
       <v-divider></v-divider>
       <v-list>
@@ -36,7 +36,11 @@
     <v-app-bar app flat>
       <v-app-bar-nav-icon @click="drawer = !drawer" v-if="$store.state.user"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-toolbar-title>안녕!</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to='/' style="text-decoration: none; color: black;">
+          안녕!
+        </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="$store.state.user" >
           <v-menu offset-y>
@@ -148,6 +152,12 @@ export default {
     ]
   }),
   methods: {
+    gotohome () {
+      console.log(this)
+      return {
+        to: '/'
+      }
+    },
     async signOut () {
       await this.$firebase.auth().signOut()
     }

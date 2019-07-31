@@ -1,8 +1,14 @@
 <template>
-  <div>
+  <v-container grid-list-xs>
+    <v-layout>
+      <v-flex>
+
     <p>여기는 메인페이지</p>
+
     {{ JSON.stringify($store.state.claims, null, 2) }}
-  </div>
+    </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
