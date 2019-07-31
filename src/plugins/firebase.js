@@ -17,14 +17,8 @@ firebase.initializeApp(firebaseConfig)
 //   .catch(e => console.error(e))
 
 Vue.prototype.$firebase = firebase
-Vue.prototype.$isFirebaseAuth = false
 
 firebase.auth().onAuthStateChanged((user) => {
-  console.log('in onAuthStateChanged')
-  Vue.prototype.$isFirebaseAuth = true
-  // console.log(user)
-
-  // store.commit('setUser', user)
   store.dispatch('getUser', user)
     .then(() => {
       if (user) {

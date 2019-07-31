@@ -1,8 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
+
+const levelCheck = (to, from, next) => {
+  console.log(to)
+  console.log(store.state.claims.level)
+  if (store.state.claims.level === undefined) next('/userProfile')
+  next()
+}
 
 const router = new Router({
   mode: 'history',
@@ -12,16 +20,17 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
-      beforeEnter: (to, from, next) => {
-        console.log(to)
-        next()
-      }
-
+      beforeEnter: levelCheck
     },
     {
       path: '/sign',
       name: 'sign',
       component: () => import('./views/sign.vue')
+    },
+    {
+      path: '/userProfile',
+      name: 'userProfile',
+      component: () => import('./views/userProfile.vue')
     },
     {
       path: '/about',
@@ -73,7 +82,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   Vue.prototype.$Progress.start()
-  if (Vue.prototype.$isFirebaseAuth) next()
+  if (store.state.firebaseLoaded) next()
 })
 
 router.afterEach((to, from) => {

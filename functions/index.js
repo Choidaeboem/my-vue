@@ -16,7 +16,7 @@ exports.createUser = functions.auth.user().onCreate((user) => {
   console.log(user)
   let set = { level: 2 }
   if (functions.config().admin.email === user.email && user.emailVerified) set.level = 0
-  admin.auth().setCustomUserClaims(user.uid, { level: 0 }).then(() => {
+  admin.auth().setCustomUserClaims(user.uid, set).then(() => {
     // The new custom claims will propagate to the user's ID token the
     // next time a new one is issued.
   })
