@@ -33,8 +33,13 @@ const router = new Router({
       component: () => import('./components/userProfile.vue')
     },
     {
+      path: '/n/:nid',
+      name: 'note',
+      component: () => import('./components/note.vue')
+    },
+    {
       path: '/notes',
-      name: 'lecturs_notes',
+      name: 'notes',
       component: () => import('./components/notes.vue')
     },
     {

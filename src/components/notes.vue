@@ -51,6 +51,9 @@
                   {{item.id}}
               </v-card-text>
               <v-card-actions>
+                  <router-link to='n/cp1uV05LLETA3BAZDJIC'>
+                    <v-btn @click="del(item.id)" depressed >go Note</v-btn>
+                  </router-link>
                   <v-spacer></v-spacer>
 
                   <v-btn @click="del(item.id)" depressed >삭제</v-btn>
@@ -72,7 +75,11 @@ export default {
     items: [],
     title: '',
     content: '',
-    id: ''
+    id: '',
+    userId: '',
+    bgcolor: '',
+    createAt: '',
+    updateAt: ''
   }),
   mounted () {
     try {
@@ -95,12 +102,15 @@ export default {
       await this.get()
       this.title = ''
       this.content = ''
+      this.bgcolor = ''
+      this.createAt = ''
+      this.updateAt = ''
     },
     async get () {
       const snapshot = await this.$firebase.firestore().collection('notes').get()
       this.items = []
       snapshot.forEach(v => {
-        console.log(v.id)
+        console.log(v)
         const { title, content } = v.data()
         this.items.push({ title, content, id: v.id })
       })
