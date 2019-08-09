@@ -59,6 +59,11 @@ const router = new Router({
       }
     },
     {
+      path: '/admin/users',
+      component: () => import('./components/admin/users.vue'),
+      beforeEnter: guestCheck // adminCheck
+    },
+    {
       path: '/test/lv0',
       component: () => import('./components/test/lv0.vue'),
       beforeEnter: adminCheck
