@@ -22,6 +22,7 @@ export default {
   },
   created () {
     this.fetchData()
+    console.log('memo create')
   },
   methods: {
     fetchData () {

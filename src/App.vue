@@ -146,6 +146,18 @@ export default {
           {
             title: 'three.js',
             to: '/test/threejs'
+          },
+          {
+            title: 'lv0',
+            to: '/test/lv0'
+          },
+          {
+            title: 'lv1',
+            to: '/test/lv1'
+          },
+          {
+            title: 'lv2',
+            to: '/test/lv2'
           }
         ]
       }
@@ -159,7 +171,8 @@ export default {
       }
     },
     async signOut () {
-      await this.$firebase.auth().signOut()
+      this.$firebase.auth().signOut()
+      this.$router.push('/sign')
     }
   }
 }

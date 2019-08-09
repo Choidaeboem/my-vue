@@ -35,7 +35,7 @@
         <v-layout wrap>
           <v-flex
             v-for="item in props.items"
-            :key="item.name"
+            :key="item.id"
             xs12
             sm6
             md4
@@ -87,6 +87,8 @@ export default {
       console.log(e)
     }
   },
+  updated () {
+  },
   methods: {
     async post () {
       if (this.title.length <= 2) {
@@ -97,8 +99,10 @@ export default {
         title: this.title,
         content: this.content
       })
-      console.log(r)
-      await this.get()
+
+      await console.log('r ->', r)
+      // await this.$router.push(`/n/${r.id}`)
+
       this.title = ''
       this.content = ''
       this.bgcolor = ''

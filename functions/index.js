@@ -5,6 +5,8 @@ const admin = require('firebase-admin')
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 admin.initializeApp()
+
+const db = admin.firestore()
 console.log(functions.config().admin.email)
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
@@ -12,12 +14,18 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 })
 
 exports.test = functions.https.onRequest(require('./test'))
-exports.createUser = functions.auth.user().onCreate((user) => {
-  console.log(user)
-  let set = { level: 2 }
-  if (functions.config().admin.email === user.email && user.emailVerified) set.level = 0
-  admin.auth().setCustomUserClaims(user.uid, set).then(() => {
-    // The new custom claims will propagate to the user's ID token the
-    // next time a new one is issued.
-  })
+exports.createUser = functions.auth.user().onCreate(async (user) => {
+  const { uid, email, displayName, emailVerified, photoURL, disabled } = user
+  const claims = { level: 2 }
+  if (functions.config().admin.email === user.email && user.emailVerified) claims.level = 0
+  await admin.auth().setCustomUserClaims(uid, claims)
+
+  const d = {
+    uid, email, displayName, emailVerified, photoURL, disabled
+  }
+  const r = await db.collection('users').doc(uid).set(d)
+  return r
+})
+exports.deleteUser = functions.auth.user().onDelete((user) => {
+  return db.collection('users').doc(user.uid).delete()
 })

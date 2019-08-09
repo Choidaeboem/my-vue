@@ -1,129 +1,43 @@
 <template>
-    <v-container grid-list-md fluid>
-        <v-layout row wrap>
-            <v-flex xs12>
-                <v-list-item-title>
-                    hello
-                </v-list-item-title>
-            </v-flex>
-            <v-flex xs3>
-                <v-card>
-                    <v-card-title primary-title>
-                        create
-                    </v-card-title>
-                    <v-card-text>
-                        <v-textarea
-                            v-model='textCreate'
-                            rows="10"
-                        >
-                        </v-textarea>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn depressed color="primary" @click="create">
-                            submit
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-flex xs3>
-                <v-card>
-                    <v-card-title primary-title>
-                        read
-                    </v-card-title>
-                    <v-card-text>
-                        <v-textarea
-                            v-model='textRead'
-                            rows="10"
-                        >
-                        </v-textarea>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn depressed color="primary" @click="read">
-                            submit
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-flex xs3>
-                <v-card>
-                    <v-card-title primary-title>
-                        update
-                    </v-card-title>
-                    <v-card-text>
-                        <v-textarea
-                            v-model='textUpdate'
-                            rows="10"
-                        >
-                        </v-textarea>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn depressed color="primary" @click="update">
-                            submit
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex><v-flex xs3>
-                <v-card>
-                    <v-card-title primary-title>
-                        delete
-                    </v-card-title>
-                    <v-card-text>
-                        <v-textarea
-                            v-model='textDelete'
-                            rows="10"
-                        >
-                        </v-textarea>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn depressed color="primary" @click="del">
-                            submit
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-container>
+    <div>
+
+    </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      textCreate: '',
-      textRead: '',
-      textUpdate: '',
-      textDelete: ''
+      resData: [],
+      Domain: '',
+      Option: '&display=Y&sellAccept=Y'
+      // Key: [
+      //   {axios.defaults.headers.common['Shopkey'] = 'dfe42ba4517bd78d5fd0caa6e8bc0fe4'},
+      //   {axios.defaults.headers.common['Licensekey'] = 'MThjN2NhYzg2NjcyNjZlMDVlMTQxYzhmNmMyOTliY2U='}
+      // ]
     }
   },
   methods: {
-    async create () {
-      const r = await this.$axios.post('test')
+    request (methods, url, data) {
+      return axios.get({
+        methods,
+        url: 'http://www.okkane.co.kr/list/open_api.html?mode=search&type=' +
 
-      this.textCreate = r.data
-      //   this.$toasted.show('hello billo')
-      this.$toasted.global.error('잘못했어요')
-    },
-    read () {
-      this.$axios.get('test')
-        .then(r => {
-          this.textRead = r.data
-        })
-        .catch(e => console.log(e))
-    },
-    update (id) {
-      this.$axios.put('test/11111')
-        .then(r => {
-          this.textUpdate = r.data
-        })
-        .catch(e => console.log(e))
-    },
-    del (id) {
-      this.$axios.delete('test/22222')
-        .then(r => {
-          this.textDelete = r.data
-        })
-        .catch(e => console.log(e))
+        +'&display=Y&sellAccept=Y',
+        data
+      })
     }
+  },
+  created () {
+    const r = this.request('get', 'product', this.Key)
+    r.then(res => {
+      console.log('res -> ', res)
+    })
+      .catch(err => {
+        console.log('err -> ', err)
+      })
   }
 }
 </script>
