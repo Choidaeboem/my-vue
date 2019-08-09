@@ -12,13 +12,20 @@ app.use(require('../middlewares/verifyToken'))
 
 app.get('/users', async (req, res) => {
   if (req.claims.level > 0) return res.status(403).send({ message: 'not authorized' })
-  console.log('admin here')
-  const s = await db.collection('users').get()
-  console.log(s.size)
+  let { offset, limit } = req.query
+  offset = parseInt(offset)
+  limit = parseInt(limit)
+
   const r = {
     items: [],
-    totalCount: s.size
+    totalCount: 0
   }
+
+  const t = await db.collection('infos').doc('users').get()
+  r.totalCount = t.data().counter
+
+  const s = await db.collection('users').offset(offset).limit(limit).get()
+
   s.forEach(v => {
     r.items.push(v.data())
   })
