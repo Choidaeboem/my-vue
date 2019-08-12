@@ -125,6 +125,10 @@ export default {
         active: true,
         subItems: [
           {
+            title: '회원관리',
+            to: '/admin/users'
+          },
+          {
             title: 'NOTES',
             to: '/notes'
           }
